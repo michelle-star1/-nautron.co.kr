@@ -684,3 +684,14 @@ section[id]{
   font-size:12px;
   color:rgba(234,240,255,.75);
 }
+@media (max-width: 768px) {
+  .hero {
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero::before {
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(2px);
+  }
+}
