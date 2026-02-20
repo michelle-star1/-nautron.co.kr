@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Nautron 선박안전관리사 자격 기반의 엔지니어링, 선박자재공급, 수리·설치공사 및 선박 중개 지원." />
-  <title>Nautron | 선박 안전·엔지니어링·자재공급·수리/설치·중개</title>
+  <meta name="description" content="Nautron Co., 선박안전관리사 자격 기반의 엔지니어링, 선박자재공급, 수리·설치공사 및 선박 중개 지원." />
+  <title>Nautron Co., | 선박 안전·엔지니어링·자재공급·수리/설치·중개</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,21 +19,21 @@
   <!-- Top bar -->
   <header class="topbar">
     <div class="container topbar__inner">
-      <a class="brand" href="#top">
-        <img class="brand__logo" src="logo.png" alt="Nautron 로고"
+      <a class="brand" href="#top" aria-label="Go to top">
+        <img class="brand__logo" src="logo.png" alt="Nautron Co., 로고"
              onerror="this.style.display='none';document.documentElement.classList.add('no-logo');" />
         <span class="brand__text">
-          <strong>Nautron</strong>
-          <small>Marine Safety & Engineering Partner</small>
+          <strong>Nautron Co.,</strong>
+          <small>Marine Safety &amp; Engineering Partner</small>
         </span>
       </a>
 
-      <nav class="nav">
+      <nav class="nav" aria-label="Primary">
         <a href="#services">서비스</a>
         <a href="#why">역량</a>
         <a href="#process">진행절차</a>
         <a href="#contact" class="nav__cta">문의</a>
-        <span class="lang">
+        <span class="lang" aria-label="Language">
           <span class="lang__current">KR</span>
           <span class="lang__sep">/</span>
           <a class="lang__link" href="en/index.html" title="English page">EN</a>
@@ -55,7 +55,7 @@
           </h1>
 
           <p class="lead">
-            Nautron는 선박안전관리 역량을 바탕으로
+            Nautron Co.,는 선박안전관리 역량을 바탕으로
             <b>엔지니어링</b>, <b>선박자재공급</b>, <b>수리·설치공사</b>를 원스톱으로 지원합니다.
             필요 시 <b>선박 중개</b> 또한 가능합니다.
           </p>
@@ -83,10 +83,22 @@
             </div>
 
             <div class="panel__lines">
-              <div class="line"><span class="dot"></span><span class="txt">요구사항 분석 및 기술 검토</span></div>
-              <div class="line"><span class="dot"></span><span class="txt">자재 조달/대체품 제안/납기 관리</span></div>
-              <div class="line"><span class="dot"></span><span class="txt">현장 수리·설치·개조 및 결과 보고</span></div>
-              <div class="line"><span class="dot"></span><span class="txt">필요 시 선박 중개 지원(NDA)</span></div>
+              <div class="line">
+                <span class="dot"></span>
+                <span class="txt">요구사항 분석 및 기술 검토</span>
+              </div>
+              <div class="line">
+                <span class="dot"></span>
+                <span class="txt">자재 조달/대체품 제안/납기 관리</span>
+              </div>
+              <div class="line">
+                <span class="dot"></span>
+                <span class="txt">현장 수리·설치·개조 및 결과 보고</span>
+              </div>
+              <div class="line">
+                <span class="dot"></span>
+                <span class="txt">필요 시 선박 중개 지원(NDA)</span>
+              </div>
             </div>
 
             <div class="panel__note">
@@ -99,14 +111,186 @@
       <div class="hero__bg" aria-hidden="true"></div>
     </section>
 
-    <!-- (이하 services/why/process/contact/footer는 원본 그대로 사용 가능) -->
-    ...
+    <!-- Services -->
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2>서비스</h2>
+          <p>목적과 조건에 맞춰 “검토 → 수행 → 검수/보고”까지 실무 중심으로 제공합니다.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3>엔지니어링</h3>
+            <p>설계/구성 검토, 기술 문서 지원, 시운전 및 트러블슈팅까지 프로젝트 목적에 맞춰 최적화합니다.</p>
+            <ul class="list">
+              <li>시스템 구성/검토</li>
+              <li>기술 문서/도면 지원</li>
+              <li>시운전/현장 기술지원</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>선박 자재 공급</h3>
+            <p>요구 규격을 고려한 조달과 대체품 제안, 납기/품질 관리를 통해 안정적으로 공급합니다.</p>
+            <ul class="list">
+              <li>조달/대체품 제안</li>
+              <li>납기 관리</li>
+              <li>검증 서류/인수 지원</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>수리·설치 공사</h3>
+            <p>수리, 교체, 개조, 설치 공사를 안전 기준에 맞춰 수행하고 결과를 명확히 문서화합니다.</p>
+            <ul class="list">
+              <li>현장 설치/개조</li>
+              <li>점검 및 기능 확인</li>
+              <li>작업 결과 보고</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>선박 안전관리 지원</h3>
+            <p>자격 기반의 점검/관리 체계로 운영 리스크를 낮추고 필요한 절차/문서를 정리합니다.</p>
+            <ul class="list">
+              <li>안전 점검/관리 지원</li>
+              <li>리스크/개선 포인트 도출</li>
+              <li>운영 문서 정리</li>
+            </ul>
+          </article>
+
+          <article class="card card--highlight">
+            <h3>선박 중개</h3>
+            <p>조건/목적에 맞춘 선박 정보 매칭을 지원합니다. 필요 시 NDA(비밀유지) 기반으로 진행합니다.</p>
+            <ul class="list">
+              <li>매칭/소개</li>
+              <li>조건 정리 지원</li>
+              <li>NDA 기반 협의</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why -->
+    <section id="why" class="section section--alt">
+      <div class="container">
+        <div class="section__head">
+          <h2>왜 Nautron인가</h2>
+          <p>“말”이 아니라 “현장 결과”로 증명하는 방식으로 일합니다.</p>
+        </div>
+
+        <div class="split">
+          <div class="panel">
+            <h3>핵심 역량</h3>
+            <div class="stack">
+              <div class="item">
+                <div class="item__title">자격 기반 안전관리</div>
+                <div class="item__desc">선박안전관리사 자격을 기반으로 안전/운영 관점의 기준을 놓치지 않습니다.</div>
+              </div>
+              <div class="item">
+                <div class="item__title">End-to-End 실행력</div>
+                <div class="item__desc">기술 검토부터 자재, 현장 공사, 검수/보고까지 한 흐름으로 수행합니다.</div>
+              </div>
+              <div class="item">
+                <div class="item__title">현장 친화 커뮤니케이션</div>
+                <div class="item__desc">요청사항을 “작업 가능한 범위”로 명확히 정의하고 리스크를 사전에 공유합니다.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>적용 분야(예시)</h3>
+            <div class="tags">
+              <span class="tag">선박 안전/운영 지원</span>
+              <span class="tag">엔지니어링/기술 검토</span>
+              <span class="tag">선박 자재 조달</span>
+              <span class="tag">수리·설치/개조</span>
+              <span class="tag">시운전/현장 지원</span>
+              <span class="tag">NDA 기반 중개</span>
+            </div>
+
+            <div class="note">
+              프로젝트 범위는 선종/운항 조건/요구 규격에 따라 달라질 수 있습니다.<br />
+              가장 빠른 방법은 간단한 조건(선박/장비/목적)을 메일로 보내주시는 것입니다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process" class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2>진행 절차</h2>
+          <p>불확실성을 줄이고, 실행 가능 범위를 명확히 한 뒤 진행합니다.</p>
+        </div>
+
+        <ol class="steps">
+          <li class="step">
+            <div class="step__no">1</div>
+            <div>
+              <div class="step__title">요청 접수</div>
+              <div class="step__desc">목적/선박 정보/희망 일정/요구 규격을 공유해 주세요.</div>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step__no">2</div>
+            <div>
+              <div class="step__title">기술 검토</div>
+              <div class="step__desc">적용 가능성, 리스크, 필요 자재/작업 범위를 정리합니다.</div>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step__no">3</div>
+            <div>
+              <div class="step__title">견적/일정 제안</div>
+              <div class="step__desc">범위/납기/비용/검수 기준을 명확히 제시합니다.</div>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step__no">4</div>
+            <div>
+              <div class="step__title">수행</div>
+              <div class="step__desc">자재 공급 또는 현장 작업을 안전 기준에 따라 수행합니다.</div>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step__no">5</div>
+            <div>
+              <div class="step__title">검수/보고</div>
+              <div class="step__desc">결과를 확인하고, 필요한 문서/사진/리포트를 제공합니다.</div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section section--cta">
+      <div class="container cta">
+        <div>
+          <h2>문의</h2>
+          <p>
+            아래 메일로 <b>선박/장비/요청 목적/희망 일정</b>을 보내주시면<br />
+            빠르게 검토 후 회신드리겠습니다.
+          </p>
+        </div>
+        <div class="cta__box">
+          <div class="cta__label">Email</div>
+          <a class="cta__email" href="mailto:nautron2025@gmail.com">nautron2025@gmail.com</a>
+          <div class="cta__hint">* 간단한 조건만 주셔도 검토 가능합니다.</div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__left">
-        <div class="footer__brand">Nautron</div>
+        <div class="footer__brand">Nautron Co.,</div>
         <div class="footer__meta">Marine Safety · Engineering · Supply · Repair/Installation · Brokerage</div>
       </div>
       <div class="footer__right">
