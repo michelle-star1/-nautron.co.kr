@@ -123,9 +123,10 @@ a{ color:inherit; text-decoration:none; }
 
 h1{
   margin:0 0 14px;
-  font-size:44px;
-  line-height:1.12;
+  font-size: clamp(26px, 5.2vw, 44px); /* 모바일~데스크탑 자동 스케일 */
+  line-height:1.15;
   letter-spacing:-.6px;
+  word-break: keep-all;  /* 한국어 단어 중간 쪼개짐 방지 */
 }
 .grad{
   background: linear-gradient(90deg, var(--accent), var(--accent2));
