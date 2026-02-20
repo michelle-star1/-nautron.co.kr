@@ -749,3 +749,23 @@ section[id]{
     font-size:24px;  /* 모바일에서 안정적인 크기 */
   }
 }
+/* =========================
+   PANEL CONTACT CENTER ALIGN
+========================= */
+
+.panel__contact{
+  text-align:center;
+}
+
+.contact__label{
+  text-align:center;
+}
+
+.contact__email{
+  display:inline-block;   /* 가운데 정렬 유지 */
+  margin:0 auto;
+}
+
+.contact__sub{
+  text-align:center;
+}
