@@ -598,3 +598,51 @@ section[id]{
 .topbar{
   min-height: var(--topbar-h);
 }
+/* =========================
+   HERO FUEL SOLUTION BLOCK
+   ========================= */
+
+.hero__fuel{
+  margin-top:36px;
+  padding:24px 28px;
+  border-radius:20px;
+  background:linear-gradient(135deg,rgba(118,169,255,.15),rgba(124,255,203,.12));
+  border:1px solid rgba(255,255,255,.15);
+  backdrop-filter:blur(8px);
+  box-shadow:0 20px 50px rgba(0,0,0,.35);
+  max-width:720px;
+}
+
+.fuel__badge{
+  font-size:12px;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+  color:var(--accent2);
+  margin-bottom:8px;
+}
+
+.fuel__headline{
+  font-size:22px;
+  font-weight:700;
+  margin-bottom:10px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.fuel__desc{
+  font-size:15px;
+  line-height:1.7;
+  color:rgba(234,240,255,.9);
+}
+
+/* Mobile */
+@media(max-width:768px){
+  .hero__fuel{
+    padding:20px;
+  }
+  .fuel__headline{
+    font-size:18px;
+  }
+}
