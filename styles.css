@@ -830,3 +830,47 @@ section[id]{
     width: calc(100% - 28px) !important;
   }
 }
+/* =========================================================
+   MOBILE: GRADIENT TEXT VISIBILITY FIX (<=560px)
+   - "엔지니어링 & 현장 수행 파트너"
+   - "사용 연료 최대 10% 절감"
+========================================================= */
+@media (max-width: 560px){
+
+  /* 1) 그라데이션 텍스트에 강한 그림자 + 외곽선 느낌 */
+  .grad,
+  .hero-title__line--grad,
+  .fuel__headline{
+    /* 그라데이션 유지 */
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+
+    /* 가독성 핵심: 그림자 여러 겹 */
+    text-shadow:
+      0 2px 10px rgba(0,0,0,.90),
+      0 0 18px rgba(0,0,0,.55);
+  }
+
+  /* 2) 배경에 따라 still 흐리면: 아주 얇은 스트로크(외곽선) 추가 */
+  .grad,
+  .hero-title__line--grad,
+  .fuel__headline{
+    -webkit-text-stroke: 0.6px rgba(0,0,0,.65);
+  }
+
+  /* 3) 특히 '엔지니어링 & 현장 수행 파트너'가 들어간 줄은 살짝 더 밝게 보정 */
+  .hero-title__line--grad{
+    filter: brightness(1.15) saturate(1.1);
+  }
+
+  /* 4) 연료절감 헤드라인이 배경에 묻히면 "칩 배경"을 깔아줌(프리미엄 느낌) */
+  .fuel__headline{
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 12px;
+    background: rgba(0,0,0,.28);
+    border: 1px solid rgba(255,255,255,.10);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+}
