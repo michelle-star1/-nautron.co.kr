@@ -275,10 +275,8 @@ h1{
 .txt{ color:rgba(234,240,255,.86); font-size:13px; line-height:1.5; }
 
 .panel__note{
-  margin-top:12px;
-  color:rgba(183,195,230,.9);
-  font-size:12px;
-  opacity:.9;
+  font-size: 11px; 
+  color: rgba(183,195,230,.78);
 }
 
 /* =========================
@@ -503,11 +501,9 @@ h1{
   .lead{ font-size:15px; line-height:1.7; }
   .mbr{ display:block; }
 
-  .hero__copy::before{
-    inset:-14px;
-    background: rgba(7,10,15,.30);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+  .hero__copy{
+    background: rgba(7,10,15,.42);   /* 기존 .36 → .42 */
+    border: 1px solid rgba(255,255,255,.14);
   }
 
   .btn{ padding:11px 14px; font-size:13px; }
@@ -518,4 +514,13 @@ h1{
 
   .nav{ gap:8px; }
   .nav a{ padding:8px 8px; }
+}
+/* ===== HERO TITLE (PC 2줄 / 모바일 자연 줄바꿈) ===== */
+.hero-title__line--white{
+  white-space: normal;          /* 기본은 줄바꿈 허용 */
+  max-width: 22ch;              /* 2줄로 떨어지게 폭 제한(가장 효과적) */
+}
+
+@media (max-width: 1024px){
+  .hero-title__line--white{ max-width: none; } /* 태블릿부터 자연스럽게 */
 }
