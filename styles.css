@@ -185,11 +185,11 @@ h1{
 }
 
 .lead{
-  margin:0 0 20px;
-  color:rgba(234,240,255,.88);
-  font-size:16px;
-  line-height:1.75;
-  text-shadow: 0 2px 14px rgba(0,0,0,.55);
+  font-size:18px;
+  line-height:1.85;
+  color:rgba(234,240,255,.92);
+  max-width:720px;     /* 글자 폭 제한 */
+  letter-spacing:-0.2px;
 }
 .mbr{ display:none; }
 
