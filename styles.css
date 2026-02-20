@@ -9,6 +9,8 @@
   --accent2:#7CFFCB;
   --shadow: 0 18px 60px rgba(0,0,0,.45);
   --radius: 18px;
+
+  /* ✅ topbar height: 한 번만 관리 */
   --topbar-h: 74px;
 }
 
@@ -21,12 +23,13 @@ html {
 
 body{
   margin:0;
-  /* 수정한 부분: 최소 높이를 화면 꽉 차게 변경하고, 배경을 고정시킵니다. */
   min-height: 100vh;
   font-family:"Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color:var(--text);
   background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
   background-attachment: fixed; /* 배경 끊김(가로선) 방지 */
+
+  /* ✅ fixed topbar offset */
   padding-top: var(--topbar-h);
 }
 
@@ -48,6 +51,7 @@ a{ color:inherit; text-decoration:none; }
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255,255,255,.05);
+  min-height: var(--topbar-h);
 }
 
 .topbar__inner{
@@ -110,15 +114,29 @@ a{ color:inherit; text-decoration:none; }
 ========================= */
 .hero{
   position:relative;
-  padding: 86px 0 44px;
   overflow:hidden;
+
+  /* ✅ padding은 공통 1곳에서만 */
+  padding: calc(var(--topbar-h) + 48px) 0 80px;
+
   background:
-    linear-gradient(180deg, rgba(7,10,15,.54) 0%, rgba(7,10,15,.82) 100%),
-    radial-gradient(900px 520px at 25% 10%, rgba(118,169,255,.12), transparent 60%),
     url("ship-hero1.png") center/cover no-repeat;
 }
 
+/* ✅ 공통 오버레이(배경+가독성) - 하나만 둠 */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg, rgba(7,10,15,.50) 0%, rgba(7,10,15,.78) 100%),
+    radial-gradient(900px 520px at 25% 10%, rgba(118,169,255,.10), transparent 60%);
+  z-index:0;
+}
+
 .hero__inner{
+  position:relative;
+  z-index:1;
   display:grid;
   grid-template-columns: 1.18fr .82fr;
   gap:28px;
@@ -150,6 +168,7 @@ a{ color:inherit; text-decoration:none; }
     radial-gradient(900px 600px at 30% 10%, rgba(118,169,255,.10), transparent 60%),
     radial-gradient(800px 520px at 80% 30%, rgba(124,255,203,.08), transparent 55%);
   mask-image: linear-gradient(180deg, rgba(0,0,0,.9), rgba(0,0,0,.2), transparent);
+  z-index:0;
 }
 
 .pill{
@@ -188,7 +207,7 @@ h1{
   font-size:18px;
   line-height:1.85;
   color:rgba(234,240,255,.92);
-  max-width:720px;     /* 글자 폭 제한 */
+  max-width:720px;
   letter-spacing:-0.2px;
 }
 .mbr{ display:none; }
@@ -484,124 +503,10 @@ h1{
   color:rgba(183,195,230,.75);
   letter-spacing:.2px;
 }
-/* =========================
-   Responsive
-========================= */
-@media (max-width: 980px){
-  .hero__inner{ grid-template-columns: 1fr; }
-  .grid{ grid-template-columns: repeat(2, 1fr); }
-  .steps{ grid-template-columns: 1fr; }
-  .split{ grid-template-columns: 1fr; }
-  .cta{ flex-direction:column; }
-  .cta__box{ min-width: 0; width:100%; }
-}
 
-@media (max-width: 560px){
-  :root{ --topbar-h: 70px; }
-
-  .container{ width: calc(100% - 28px); }
-  .hero{ padding: 62px 0 34px; }
-
-  h1{ font-size:28px; line-height:1.25; }
-  .lead{ font-size:15px; line-height:1.7; }
-  .mbr{ display:block; }
-
-  .hero__copy{
-    background: rgba(7,10,15,.42);   /* 기존 .36 → .42 */
-    border: 1px solid rgba(255,255,255,.14);
-  }
-
-  .btn{ padding:11px 14px; font-size:13px; }
-  .hero__actions{ gap:10px; }
-
-  .badge{ font-size:11px; padding:7px 9px; }
-  .grid{ grid-template-columns: 1fr; }
-
-  .nav{ gap:8px; }
-  .nav a{ padding:8px 8px; }
-}
-/* ===== HERO TITLE (PC 2줄 / 모바일 자연 줄바꿈) ===== */
-.hero-title{
-  margin:0 0 20px;
-  line-height:1.18;
-  letter-spacing:-0.5px;
-}
-
-.hero-title__line{
-  display:block;
-  word-break:keep-all;
-}
-
-/* 첫 줄 - 강제 줄바꿈 방지 */
-.hero-title__line--white{
-  font-size:clamp(30px,3.2vw,52px);
-  font-weight:800;
-  white-space:nowrap;  /* PC에서는 한줄 고정 */
-}
-
-/* 두 번째 줄 */
-.hero-title__line--grad{
-  font-size:clamp(30px,3vw,48px);
-  font-weight:800;
-  margin-top:10px;
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  white-space:nowrap; /* 파트너가 떨어지지 않도록 */
-}
-
-@media(max-width:900px){
-  .hero-title__line--white,
-  .hero-title__line--grad{
-    white-space:normal;
-  }
-}
-/* =========================
-   FIXED TOPBAR OFFSET (MOBILE SAFE)
-   ========================= */
-
-/* 1) 고정 헤더 높이를 변수로 관리 */
-:root{
-  --topbar-h: 72px; /* 기본(PC/태블릿) */
-}
-
-/* 2) topbar가 fixed면 body(또는 main)에 여백을 줘서 가려짐 방지 */
-body{
-  padding-top: var(--topbar-h);
-}
-
-/* 3) 실제 topbar 높이가 변하는 모바일 구간에서는 값을 더 크게 */
-@media (max-width: 560px){
-  :root{
-    --topbar-h: 92px; /* 모바일에서 로고/언어/메뉴가 2줄이 될 수 있어 여유 */
-  }
-}
-
-/* 4) Hero는 기존 padding을 “고정값” 대신 변수 기반으로 */
-.hero{
-  /* 기존에 padding:140px 0 80px 같은게 있으면 아래로 교체 */
-  padding: calc(var(--topbar-h) + 48px) 0 80px;
-}
-
-/* 5) 앵커 이동(#services 등) 시에도 헤더에 가려지지 않게 */
-section[id]{
-  scroll-margin-top: calc(var(--topbar-h) + 16px);
-}
-
-/* 6) iOS/안드 모바일 브라우저에서 주소창 변화로 생기는 튐을 완화 */
-@supports (height: 100dvh){
-  .hero{ min-height: calc(100dvh - var(--topbar-h)); }
-}
-
-/* 7) 혹시 topbar 내부가 줄바꿈되며 높이가 더 커지는 경우 대비(선택) */
-.topbar{
-  min-height: var(--topbar-h);
-}
 /* =========================
    HERO FUEL SOLUTION BLOCK
-   ========================= */
-
+========================= */
 .hero__fuel{
   margin-top:36px;
   padding:24px 28px;
@@ -637,17 +542,7 @@ section[id]{
   color:rgba(234,240,255,.9);
 }
 
-/* Mobile */
-@media(max-width:768px){
-  .hero__fuel{
-    padding:20px;
-  }
-  .fuel__headline{
-    font-size:18px;
-  }
-}
 /* ===== Right Panel Contact (Premium Version) ===== */
-
 .panel__contact{
   margin-top:18px;
   padding:18px;
@@ -656,14 +551,12 @@ section[id]{
   border:1px solid rgba(255,255,255,.12);
   backdrop-filter:blur(8px);
 }
-
 .contact__label{
   font-size:12px;
   color:rgba(183,195,230,.9);
   margin-bottom:10px;
   letter-spacing:.5px;
 }
-
 .contact__email{
   display:inline-block;
   font-size:16px;
@@ -674,203 +567,114 @@ section[id]{
   border:1px solid rgba(255,255,255,.15);
   transition:.2s;
 }
-
 .contact__email:hover{
   background:linear-gradient(90deg,rgba(118,169,255,.35),rgba(124,255,203,.3));
 }
-
 .contact__sub{
   margin-top:8px;
   font-size:12px;
   color:rgba(234,240,255,.75);
 }
-@media (max-width: 768px) {
-  .hero {
-    background-size: cover;
-    background-position: center;
-  }
 
-  .hero::before {
-    background: rgba(0,0,0,0.75);
-    backdrop-filter: blur(2px);
-  }
+/* =========================
+   Responsive (정리본)
+========================= */
+
+/* 태블릿 이하 */
+@media (max-width: 980px){
+  .hero__inner{ grid-template-columns: 1fr; }
+  .grid{ grid-template-columns: repeat(2, 1fr); }
+  .steps{ grid-template-columns: 1fr; }
+  .split{ grid-template-columns: 1fr; }
+  .cta{ flex-direction:column; }
+  .cta__box{ min-width: 0; width:100%; }
 }
-/* =========================================================
-   MOBILE READABILITY OVERRIDE (<=560px)
-   - Hero 가독성/대비/타이포/여백 일괄 개선
-   - 이 블록은 CSS 맨 아래에 붙여넣으세요.
-========================================================= */
+
+/* 768 이하 */
+@media (max-width: 768px){
+  .hero__fuel{ padding:20px; }
+  .fuel__headline{ font-size:18px; }
+}
+
+/* ✅ 모바일: 여기서만 딱 한 번에 처리 */
 @media (max-width: 560px){
+  :root{ --topbar-h: 92px; } /* 모바일에서 헤더 높이 여유 */
 
-  /* 0) 모바일 기본 가독성 */
-  body{
-    -webkit-text-size-adjust: 100%;
-    text-rendering: optimizeLegibility;
-  }
+  .container{ width: calc(100% - 28px); }
 
-  /* 1) HERO: 모바일에서 배경 위 텍스트 대비 강화
-        ※ 기존 코드에 .hero::before가 없어서 새로 만듭니다. */
+  /* Hero 여백/배경 */
   .hero{
-    position: relative; /* ::before를 위한 기준 */
-    background-position: center;
-    background-size: cover;
-    padding: calc(var(--topbar-h) + 22px) 0 30px !important;
+    padding: calc(var(--topbar-h) + 22px) 0 34px;
   }
 
+  /* ✅ 모바일 오버레이는 "너무 진하지 않게" (배경 사진 보이게) */
   .hero::before{
-    content:"";
-    position:absolute;
-    inset:0;
     background:
-      linear-gradient(180deg, rgba(0,0,0,.70) 0%, rgba(0,0,0,.82) 100%);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-    z-index:0;
+      linear-gradient(180deg, rgba(7,10,15,.38) 0%, rgba(7,10,15,.62) 100%),
+      radial-gradient(900px 520px at 25% 10%, rgba(118,169,255,.10), transparent 60%);
   }
 
-  /* FX 레이어는 너무 밝으면 텍스트를 흐립니다 → 모바일에서는 약화 */
-  .hero__fx{
-    opacity: .55;
-  }
-
-  /* 2) 좌측 텍스트 카드(글 박스): 더 진하고 확실하게 */
-  .hero__copy{
-    position: relative;
-    z-index:1;
-  }
-
-  /* 기존 hero__copy::before가 카드 배경 담당 → 모바일에서 더 진하게 */
+  /* 텍스트 박스(카드) 대비 */
   .hero__copy::before{
-    inset:-14px !important;
-    background: rgba(7,10,15,.62) !important; /* 더 진하게 */
-    border: 1px solid rgba(255,255,255,.14) !important;
-    backdrop-filter: blur(6px) !important;
-    -webkit-backdrop-filter: blur(6px) !important;
-    box-shadow: 0 18px 60px rgba(0,0,0,.55) !important;
-  }
-
-  /* 3) 타이포: 제목/본문/리드 문장 가독성 */
-  h1{
-    font-size: clamp(22px, 7vw, 30px) !important;
-    line-height: 1.28 !important;
-    letter-spacing: -0.02em !important;
-    margin-bottom: 12px !important;
-    text-shadow: 0 2px 18px rgba(0,0,0,.75) !important;
-  }
-
-  .lead{
-    font-size: 16px !important;
-    line-height: 1.75 !important;
-    color: rgba(234,240,255,.94) !important;
-    max-width: 100% !important;
-    text-shadow: 0 2px 14px rgba(0,0,0,.65) !important;
-  }
-
-  .pill{
-    font-size: 12px !important;
-    padding: 7px 10px !important;
-    margin-bottom: 12px !important;
-    background: rgba(255,255,255,.08) !important;
-    border-color: rgba(255,255,255,.10) !important;
-  }
-
-  /* 4) 버튼: 터치 영역/가독성 */
-  .hero__actions{
-    gap: 10px !important;
-    margin: 16px 0 12px !important;
-  }
-  .btn{
-    padding: 12px 14px !important;
-    font-size: 14px !important;
-    border-radius: 14px !important;
-  }
-
-  /* 5) 배지 라인: 더 또렷하게 */
-  .badge{
-    background: rgba(7,10,15,.55) !important;
-    border-color: rgba(255,255,255,.10) !important;
-    font-size: 12px !important;
-    padding: 8px 10px !important;
-  }
-
-  /* 6) 우측 패널(핵심가치 카드)은 모바일에서 아래로 내려오며 작아짐
-        → 폰트/패딩 조금 키워 가독성 확보 */
-  .panel__card{
-    padding: 16px !important;
-    background: linear-gradient(180deg, rgba(15,22,44,.95), rgba(13,20,38,.90)) !important;
-  }
-  .txt{
-    font-size: 14px !important;
-    line-height: 1.6 !important;
-    color: rgba(234,240,255,.90) !important;
-  }
-
-  /* 7) 연료절감 블록: 배경/텍스트 대비 강화 */
-  .hero__fuel{
-    margin-top: 20px !important;
-    padding: 18px 18px !important;
-    border-radius: 18px !important;
-    background: rgba(7,10,15,.55) !important;
-    border: 1px solid rgba(255,255,255,.14) !important;
-    backdrop-filter: blur(6px) !important;
-    -webkit-backdrop-filter: blur(6px) !important;
-  }
-  .fuel__headline{
-    font-size: 18px !important;
-    margin-bottom: 8px !important;
-  }
-  .fuel__desc{
-    font-size: 14px !important;
-    line-height: 1.7 !important;
-    color: rgba(234,240,255,.92) !important;
-  }
-
-  /* 8) 컨테이너 좌우 여백 확보(모바일에서 붙어보이는 문제 해결) */
-  .container{
-    width: calc(100% - 28px) !important;
-  }
-}
-/* =========================================================
-   MOBILE: GRADIENT TEXT VISIBILITY FIX (<=560px)
-   - "엔지니어링 & 현장 수행 파트너"
-   - "사용 연료 최대 10% 절감"
-========================================================= */
-@media (max-width: 560px){
-
-  /* 1) 그라데이션 텍스트에 강한 그림자 + 외곽선 느낌 */
-  .grad,
-  .hero-title__line--grad,
-  .fuel__headline{
-    /* 그라데이션 유지 */
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-
-    /* 가독성 핵심: 그림자 여러 겹 */
-    text-shadow:
-      0 2px 10px rgba(0,0,0,.90),
-      0 0 18px rgba(0,0,0,.55);
-  }
-
-  /* 2) 배경에 따라 still 흐리면: 아주 얇은 스트로크(외곽선) 추가 */
-  .grad,
-  .hero-title__line--grad,
-  .fuel__headline{
-    -webkit-text-stroke: 0.6px rgba(0,0,0,.65);
-  }
-
-  /* 3) 특히 '엔지니어링 & 현장 수행 파트너'가 들어간 줄은 살짝 더 밝게 보정 */
-  .hero-title__line--grad{
-    filter: brightness(1.15) saturate(1.1);
-  }
-
-  /* 4) 연료절감 헤드라인이 배경에 묻히면 "칩 배경"을 깔아줌(프리미엄 느낌) */
-  .fuel__headline{
-    display: inline-block;
-    padding: 6px 10px;
-    border-radius: 12px;
-    background: rgba(0,0,0,.28);
-    border: 1px solid rgba(255,255,255,.10);
+    inset:-14px;
+    background: rgba(7,10,15,.48);
+    border: 1px solid rgba(255,255,255,.12);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 18px 60px rgba(0,0,0,.45);
   }
+
+  /* 타이포 */
+  h1{ font-size:28px; line-height:1.25; }
+  .lead{ font-size:15px; line-height:1.7; }
+  .mbr{ display:block; }
+
+  /* ✅ 핵심: 모바일에서는 그라데이션 텍스트를 단색으로 강제 (안 보이는 문제 해결) */
+  .grad,
+  .fuel__headline{
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    color: rgba(234,240,255,.98) !important;
+    -webkit-text-fill-color: rgba(234,240,255,.98) !important;
+    text-shadow: 0 2px 14px rgba(0,0,0,.55) !important;
+  }
+
+  /* 버튼/배지 */
+  .btn{ padding:11px 14px; font-size:13px; }
+  .hero__actions{ gap:10px; }
+  .badge{ font-size:11px; padding:7px 9px; }
+
+  /* Fuel 블록: 모바일에서는 너무 튀지 않게 + 선명하게 */
+  .hero__fuel{
+    margin-top: 22px;
+    padding: 18px;
+    border-radius: 18px;
+    background: rgba(7,10,15,.42);
+    border: 1px solid rgba(255,255,255,.14);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .fuel__desc{
+    font-size:14px;
+    line-height:1.7;
+    color: rgba(234,240,255,.92);
+  }
+
+  /* nav 간격 */
+  .nav{ gap:8px; }
+  .nav a{ padding:8px 8px; }
+
+  /* 레이아웃 */
+  .grid{ grid-template-columns: 1fr; }
+}
+
+/* 앵커 이동 시 상단바에 가려짐 방지 */
+section[id]{
+  scroll-margin-top: calc(var(--topbar-h) + 16px);
+}
+
+/* 모바일 주소창 변화 대응 */
+@supports (height: 100dvh){
+  .hero{ min-height: calc(100dvh - var(--topbar-h)); }
 }
