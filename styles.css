@@ -15,7 +15,7 @@
 .hero{
   background:
     linear-gradient(rgba(7,10,15,.78), rgba(7,10,15,.88)),
-    url('ship-hero.png') center/cover no-repeat;
+    url('ship-hero1.png') center/cover no-repeat;
 }
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
